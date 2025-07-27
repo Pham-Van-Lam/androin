@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "alarms.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2; // Tăng version để upgrade
     private static final String TABLE_ALARMS = "alarms";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_HOUR = "hour";
@@ -19,6 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_DAYS = "days";
     private static final String COLUMN_SNOOZE = "snooze";
     private static final String COLUMN_ENABLED = "enabled";
+    private static final String COLUMN_SNOOZING = "is_snoozing"; // Thêm cột mới
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,14 +33,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_MINUTE + " INTEGER, " +
                 COLUMN_DAYS + " TEXT, " +
                 COLUMN_SNOOZE + " INTEGER, " +
-                COLUMN_ENABLED + " INTEGER)";
+                COLUMN_ENABLED + " INTEGER, " +
+                COLUMN_SNOOZING + " INTEGER)";
         db.execSQL(createTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ALARMS);
-        onCreate(db);
+        if (oldVersion < 2) {
+            db.execSQL("ALTER TABLE " + TABLE_ALARMS + " ADD COLUMN " + COLUMN_SNOOZING + " INTEGER DEFAULT 0");
+        }
     }
 
     public long addAlarm(Alarm alarm) {
@@ -50,6 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_DAYS, listToString(alarm.getDaysOfWeek()));
         values.put(COLUMN_SNOOZE, alarm.isSnooze() ? 1 : 0);
         values.put(COLUMN_ENABLED, alarm.isEnabled() ? 1 : 0);
+        values.put(COLUMN_SNOOZING, alarm.isSnoozing() ? 1 : 0);
         return db.insert(TABLE_ALARMS, null, values);
     }
 
@@ -61,6 +65,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_DAYS, listToString(alarm.getDaysOfWeek()));
         values.put(COLUMN_SNOOZE, alarm.isSnooze() ? 1 : 0);
         values.put(COLUMN_ENABLED, alarm.isEnabled() ? 1 : 0);
+        values.put(COLUMN_SNOOZING, alarm.isSnoozing() ? 1 : 0);
         db.update(TABLE_ALARMS, values, COLUMN_ID + "=?", new String[]{String.valueOf(alarm.getId())});
     }
 
@@ -80,8 +85,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String daysStr = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DAYS));
             boolean snooze = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SNOOZE)) == 1;
             boolean enabled = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ENABLED)) == 1;
+            boolean isSnoozing = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_SNOOZING)) == 1;
             List<Integer> days = stringToList(daysStr);
-            alarms.add(new Alarm(id, hour, minute, days, snooze, enabled));
+            Alarm alarm = new Alarm(id, hour, minute, days, snooze, enabled);
+            alarm.setSnoozing(isSnoozing);
+            alarms.add(alarm);
         }
         cursor.close();
         return alarms;

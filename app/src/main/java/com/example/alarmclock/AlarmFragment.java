@@ -368,14 +368,18 @@ public class AlarmFragment extends Fragment implements AlarmAdapter.OnAlarmClick
     @Override
     public void onResume() {
         super.onResume();
-        // Refresh alarm states when returning to fragment
+        // Làm mới danh sách báo thức
         if (alarmAdapter != null) {
+            alarmList = dbHelper.getAllAlarms();
             for (Alarm alarm : alarmList) {
                 if (alarm.isEnabled()) {
                     alarm.setNextAlarmTime(alarm.calculateNextAlarmTime());
                 }
             }
-            alarmAdapter.notifyDataSetChanged();
+            alarmAdapter = new AlarmAdapter(alarmList, this, getContext());
+            recyclerView.setAdapter(alarmAdapter);
+            updateEmptyState();
+            Log.d(TAG, "Refreshed alarm list on resume");
         }
     }
 }

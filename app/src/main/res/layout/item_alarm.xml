@@ -47,7 +47,7 @@
             android:id="@+id/text_ampm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="PM"
             android:textSize="16sp"
             android:textColor="@color/alarm_secondary_text"
             android:layout_marginStart="8dp"

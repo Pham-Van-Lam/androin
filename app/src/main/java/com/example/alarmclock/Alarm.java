@@ -250,10 +250,14 @@ public class Alarm implements Serializable {
             return "Now";
         }
 
-        long hours = timeDiff / (1000 * 60 * 60);
+        long days = timeDiff / (1000 * 60 * 60 * 24);
+        long hours = (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
         long minutes = (timeDiff % (1000 * 60 * 60)) / (1000 * 60);
 
-        if (hours > 0) {
+        if(days > 0){
+            return String.format("Rings in %dd %dh %dm", days, hours, minutes);
+        }
+        else if (hours > 0) {
             return String.format("Rings in %dh %dm", hours, minutes);
         } else {
             return String.format("Rings in %dm", minutes);

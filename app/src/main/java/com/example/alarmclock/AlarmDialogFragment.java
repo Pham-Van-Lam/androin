@@ -1,12 +1,18 @@
 package com.example.alarmclock;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -333,8 +339,31 @@ public class AlarmDialogFragment extends DialogFragment {
     }
 
     private void showRingtoneSelector() {
-        // Implement ringtone selection
-        Toast.makeText(getContext(), "Ringtone selector not implemented yet", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM);
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, "Select Alarm Sound");
+        intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI,
+                alarm != null && !alarm.getRingtone().equals("default") ?
+                        Uri.parse(alarm.getRingtone()) : null);
+        startActivityForResult(intent, 100);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK && data != null) {
+            Uri ringtoneUri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+            TextView selectedRingtoneText = getView().findViewById(R.id.text_selected_ringtone);
+            if (ringtoneUri != null) {
+                Ringtone ringtone = RingtoneManager.getRingtone(requireContext(), ringtoneUri);
+                String ringtoneName = ringtone != null ? ringtone.getTitle(requireContext()) : "Default";
+                selectedRingtoneText.setText(ringtoneName);
+                alarm.setRingtone(ringtoneUri.toString());
+            } else {
+                selectedRingtoneText.setText("Default");
+                alarm.setRingtone("default");
+            }
+        }
     }
 
     private void saveAlarm() {
