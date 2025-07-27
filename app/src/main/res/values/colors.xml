@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primary_color">#1976D2</color>
+    <color name="primary_dark">#0D47A1</color>
+    <color name="secondary_text">#757575</color>
+    <color name="timer_primary">#FF6B35</color>
+    <color name="accent_color">#4CAF50</color>
+    <color name="background_light">#FAFAFA</color>
+    <!-- Alarm Card Colors -->
+    <color name="alarm_card_background">#FFFFFF</color>
+    <color name="alarm_card_background_disabled">#F5F5F5</color>
+
+    <!-- Text Colors -->
+    <color name="alarm_time_color">#1A1A1A</color>
+    <color name="alarm_time_color_disabled">#9E9E9E</color>
+    <color name="alarm_secondary_text">#666666</color>
+    <color name="alarm_secondary_text_disabled">#BDBDBD</color>
+    <color name="alarm_label_color">#8E8E8E</color>
+    <color name="next_alarm_color">#4CAF50</color>
+
+    <!-- Icon Colors -->
+    <color name="alarm_icon_color">#2196F3</color>
+    <color name="alarm_icon_color_disabled">#BDBDBD</color>
+
+    <!-- Snooze Colors -->
+    <color name="snooze_color">#FF9800</color>
+
+    <!-- Switch Colors -->
+    <color name="switch_thumb_color">#2196F3</color>
+    <color name="switch_track_color">#E3F2FD</color>
+
+    <!-- Status Indicator -->
+    <color name="status_active">#4CAF50</color>
+    <color name="status_inactive">#E0E0E0</color>
+
+
+    <!-- Background Colors -->
+    <color name="alarm_editor_background">#F8F9FA</color>
+
+    <!-- Text Colors -->
+    <color name="section_title_color">#1A1A1A</color>
+    <color name="setting_text_color">#333333</color>
+    <color name="setting_secondary_text">#666666</color>
+    <color name="setting_icon_color">#666666</color>
+
+
+
+    <!-- Day Button Colors -->
+    <color name="day_button_selected">#2196F3</color>
+    <color name="day_button_unselected">#FFFFFF</color>
+    <color name="day_button_text_selected">#FFFFFF</color>
+    <color name="day_button_text_unselected">#666666</color>
+    <color name="day_button_stroke_selected">#2196F3</color>
+    <color name="day_button_stroke_unselected">#E0E0E0</color>
+
+    <!-- Chip Colors -->
+    <color name="chip_selected">#E3F2FD</color>
+    <color name="chip_unselected">#F5F5F5</color>
+
+</resources>

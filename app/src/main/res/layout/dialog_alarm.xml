@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/alarm_editor_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Time Picker Section -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set Time"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/section_title_color"
+                    android:layout_marginBottom="16dp"
+                    android:drawableStart="@drawable/ic_schedule"
+                    android:drawablePadding="12dp"
+                    android:gravity="center_vertical" />
+
+                <TimePicker
+                    android:id="@+id/time_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:timePickerMode="spinner"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Days of Week Section -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Repeat"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/section_title_color"
+                    android:layout_marginBottom="16dp"
+                    android:drawableStart="@drawable/ic_repeat"
+                    android:drawablePadding="12dp"
+                    android:gravity="center_vertical" />
+
+                <!-- Quick Presets -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_once"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Once"
+                        android:layout_marginEnd="8dp"
+                        style="@style/Widget.Material3.Chip.Filter"
+                        android:checked="true" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_weekdays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Weekdays"
+                        android:layout_marginEnd="8dp"
+                        style="@style/Widget.Material3.Chip.Filter" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_daily"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Daily"
+                        style="@style/Widget.Material3.Chip.Filter" />
+
+                </LinearLayout>
+
+                <!-- Custom Days Grid -->
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="7"
+                    android:alignmentMode="alignBounds"
+                    android:useDefaultMargins="false">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_sun"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginEnd="4dp"
+                        android:text="S"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        app:cornerRadius="24dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_mon"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginHorizontal="2dp"
+                        android:text="M"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        app:cornerRadius="24dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_tue"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginHorizontal="2dp"
+                        android:text="T"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        app:cornerRadius="24dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_wed"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginHorizontal="2dp"
+                        android:text="W"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        app:cornerRadius="24dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_thu"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginHorizontal="2dp"
+                        android:text="T"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        app:cornerRadius="24dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_fri"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginHorizontal="2dp"
+                        android:text="F"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        app:cornerRadius="24dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_sat"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginStart="4dp"
+                        android:text="S"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        app:cornerRadius="24dp" />
+                </GridLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Alarm Settings Section -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Settings"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/section_title_color"
+                    android:layout_marginBottom="16dp"
+                    android:drawableStart="@drawable/ic_settings"
+                    android:drawablePadding="12dp"
+                    android:gravity="center_vertical" />
+
+                <!-- Alarm Label -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:boxStrokeColor="@color/primary_color"
+                    app:hintTextColor="@color/primary_color"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_alarm_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Alarm label (optional)"
+                        android:inputType="text"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Snooze Setting -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_snooze"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/setting_icon_color" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Snooze"
+                        android:textSize="16sp"
+                        android:textColor="@color/setting_text_color" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switch_snooze"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        app:thumbTint="@color/switch_thumb_color"
+                        app:trackTint="@color/switch_track_color" />
+
+                </LinearLayout>
+
+                <!-- Snooze Duration -->
+                <LinearLayout
+                    android:id="@+id/layout_snooze_duration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Snooze duration"
+                        android:textSize="14sp"
+                        android:textColor="@color/setting_secondary_text" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_snooze_duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="10 min"
+                        android:textSize="12sp"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        app:cornerRadius="18dp"
+                        android:minWidth="80dp" />
+
+                </LinearLayout>
+
+                <!-- Vibration Setting -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_vibration"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/setting_icon_color" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Vibration"
+                        android:textSize="16sp"
+                        android:textColor="@color/setting_text_color" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switch_vibration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        app:thumbTint="@color/switch_thumb_color"
+                        app:trackTint="@color/switch_track_color" />
+
+                </LinearLayout>
+
+                <!-- Ringtone Setting -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_music_note"
+                        android:layout_marginEnd="16dp"
+                        app:tint="@color/setting_icon_color" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ringtone"
+                            android:textSize="16sp"
+                            android:textColor="@color/setting_text_color" />
+
+                        <TextView
+                            android:id="@+id/text_selected_ringtone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Default alarm"
+                            android:textSize="12sp"
+                            android:textColor="@color/setting_secondary_text" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="@color/setting_secondary_text" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:textSize="16sp"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_marginEnd="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save Alarm"
+                android:textSize="16sp"
+                app:backgroundTint="@color/primary_color"
+                app:cornerRadius="24dp"
+                android:paddingHorizontal="32dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

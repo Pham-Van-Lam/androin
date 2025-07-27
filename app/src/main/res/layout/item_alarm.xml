@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/alarm_card_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <!-- Alarm Icon -->
+        <ImageView
+            android:id="@+id/icon_alarm"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_alarm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/alarm_icon_color" />
+
+        <!-- Time Display -->
+        <TextView
+            android:id="@+id/text_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="07:30"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@color/alarm_time_color"
+            app:layout_constraintStart_toEndOf="@id/icon_alarm"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/switch_enabled" />
+
+        <!-- AM/PM Indicator -->
+        <TextView
+            android:id="@+id/text_ampm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="@color/alarm_secondary_text"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@id/text_time"
+            app:layout_constraintTop_toTopOf="@id/text_time"
+            app:layout_constraintBottom_toBottomOf="@id/text_time" />
+
+        <!-- Days of Week -->
+        <TextView
+            android:id="@+id/text_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Mon, Tue, Wed, Thu, Fri"
+            android:textSize="14sp"
+            android:textColor="@color/alarm_secondary_text"
+            app:layout_constraintStart_toEndOf="@id/icon_alarm"
+            app:layout_constraintTop_toBottomOf="@id/text_time"
+            app:layout_constraintEnd_toStartOf="@id/switch_enabled" />
+
+        <!-- Alarm Label -->
+        <TextView
+            android:id="@+id/text_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Wake up"
+            android:textSize="12sp"
+            android:textColor="@color/alarm_label_color"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/icon_alarm"
+            app:layout_constraintTop_toBottomOf="@id/text_days"
+            app:layout_constraintEnd_toStartOf="@id/switch_enabled" />
+
+        <!-- Snooze Status -->
+        <LinearLayout
+            android:id="@+id/layout_snooze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/icon_alarm"
+            app:layout_constraintTop_toBottomOf="@id/text_label">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_snooze"
+                app:tint="@color/snooze_color" />
+
+            <TextView
+                android:id="@+id/text_snooze"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Snoozing for 5 min"
+                android:textSize="12sp"
+                android:textColor="@color/snooze_color" />
+
+        </LinearLayout>
+
+        <!-- Enable/Disable Switch -->
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switch_enabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            app:thumbTint="@color/switch_thumb_color"
+            app:trackTint="@color/switch_track_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- Status Indicator -->
+        <View
+            android:id="@+id/status_indicator"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/alarm_status_indicator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- Next Alarm Info -->
+        <TextView
+            android:id="@+id/text_next_alarm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Rings in 8h 23m"
+            android:textSize="11sp"
+            android:textColor="@color/next_alarm_color"
+            android:alpha="0.8"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@id/icon_alarm"
+            app:layout_constraintTop_toBottomOf="@id/layout_snooze"
+            app:layout_constraintEnd_toStartOf="@id/switch_enabled" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

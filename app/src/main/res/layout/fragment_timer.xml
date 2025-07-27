@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/timer_gradient_background"
+    android:padding="24dp">
+
+    <!-- Timer Input Section -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.85">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                app:tint="@color/primary_color" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:boxStrokeColor="@color/primary_color"
+                app:hintTextColor="@color/primary_color"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_minutes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter minutes"
+                    android:inputType="number"
+                    android:textSize="16sp"
+                    android:maxLength="3" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="min"
+                android:textSize="16sp"
+                android:textColor="@color/secondary_text"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Timer Display -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_timer"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        app:cardCornerRadius="160dp"
+        app:cardElevation="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/card_input"
+        app:layout_constraintBottom_toTopOf="@+id/layout_buttons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        android:layout_marginTop="32dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <!-- Progress Ring (Optional - can be added programmatically) -->
+            <ProgressBar
+                android:id="@+id/progress_ring"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:layout_centerInParent="true"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:progressDrawable="@drawable/circular_progress"
+                android:max="100"
+                android:progress="0"
+                android:indeterminate="false" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/text_timer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00"
+                    android:textSize="48sp"
+                    android:textColor="@color/primary_dark"
+                    android:letterSpacing="0.1" />
+
+                <TextView
+                    android:id="@+id/text_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ready to start"
+                    android:textSize="14sp"
+                    android:textColor="@color/secondary_text"
+                    android:layout_marginTop="8dp"
+                    android:alpha="0.8" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Control Buttons -->
+    <LinearLayout
+        android:id="@+id/layout_buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.85">
+
+        <!-- Start/Stop Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_start_stop"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
+            android:text="START"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/timer_primary"
+            app:cornerRadius="32dp"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:iconSize="24dp" />
+
+        <!-- Reset Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_reset"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:text="RESET"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            app:strokeColor="@color/timer_primary"
+            app:strokeWidth="2dp"
+            app:cornerRadius="32dp"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:iconSize="24dp"
+            android:textColor="@color/timer_primary" />
+
+    </LinearLayout>
+
+    <!-- Floating Action Button for Quick Timers -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_quick_timers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quick"
+        app:backgroundTint="@color/accent_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp" />
+
+    <!-- Decorative Background Elements -->
+    <View
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/circle_decoration"
+        android:alpha="0.05"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp" />
+
+    <View
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/circle_decoration"
+        android:alpha="0.08"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="120dp"
+        android:layout_marginEnd="40dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
