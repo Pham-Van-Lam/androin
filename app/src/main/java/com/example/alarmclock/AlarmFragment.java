@@ -57,6 +57,7 @@ public class AlarmFragment extends Fragment implements AlarmAdapter.OnAlarmClick
         dbHelper = new DatabaseHelper(getContext());
     }
 
+    // xoa khi vuot
     private void setupRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -72,6 +73,7 @@ public class AlarmFragment extends Fragment implements AlarmAdapter.OnAlarmClick
         });
     }
 
+    // Tải và hiển thị danh sách báo thức
     private void loadAlarms() {
         alarmList = dbHelper.getAllAlarms();
 
@@ -88,6 +90,7 @@ public class AlarmFragment extends Fragment implements AlarmAdapter.OnAlarmClick
         updateEmptyState();
     }
 
+    // an hien danh sach bao thuc
     private void updateEmptyState() {
         if (alarmList.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
@@ -244,6 +247,7 @@ public class AlarmFragment extends Fragment implements AlarmAdapter.OnAlarmClick
         }
     }
 
+    // len lich bao thuc
     // Alarm scheduling methods
     private void scheduleAlarm(Alarm alarm) {
         AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
@@ -280,6 +284,7 @@ public class AlarmFragment extends Fragment implements AlarmAdapter.OnAlarmClick
         }
     }
 
+    // hủy một báo thức đã được đặt
     private void cancelAlarm(int alarmId) {
         AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(getContext(), AlarmReceiver.class);

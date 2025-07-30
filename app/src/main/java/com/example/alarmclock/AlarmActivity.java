@@ -38,8 +38,8 @@ public class AlarmActivity extends AppCompatActivity {
 
         // Allow activity to show over lock screen and turn on screen
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
-            setShowWhenLocked(true);
-            setTurnScreenOn(true);
+            setShowWhenLocked(true); //  hiển thị trên màn hình khóa
+            setTurnScreenOn(true); //  bật sáng màn hình
         } else {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                     WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |

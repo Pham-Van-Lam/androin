@@ -109,7 +109,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 alarm.setSnoozing(false); // Reset snooze status
                 dbHelper.updateAlarm(alarm);
                 alarmManager.setExactAndAllowWhileIdle(
-                        AlarmManager.RTC_WAKEUP,
+                        AlarmManager.RTC_WAKEUP, // may dang ngu
                         triggerTime,
                         pendingIntent
                 );

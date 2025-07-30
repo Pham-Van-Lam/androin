@@ -29,7 +29,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.AlarmViewHol
 
     public interface OnAlarmClickListener {
         void onAlarmClick(Alarm alarm);
-        void onAlarmToggle(Alarm alarm, boolean enabled);
+        void onAlarmToggle(Alarm alarm, boolean enabled); // xu ly khi bat tat 1 bao thuc
     }
 
     public AlarmAdapter(List<Alarm> alarms, OnAlarmClickListener listener, Context context) {
@@ -54,6 +54,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.AlarmViewHol
         setupClickListeners(holder, alarm, position);
     }
 
+    // Cập nhật giao diện cho từng báo thức.
     private void bindAlarmData(@NonNull AlarmViewHolder holder, Alarm alarm) {
         // Time display
         holder.timeText.setText(alarm.getFormattedTime12Hour());
